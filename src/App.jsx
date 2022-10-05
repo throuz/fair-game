@@ -16,6 +16,19 @@ const App = () => {
         <input type="number" placeholder="Please enter bet amount" />
         <button>Bet</button>
       </div>
+      <div className="card">
+        <h2>History</h2>
+        <div className="history-list">
+          <div className="history-msg">
+            <span className="win-text">Win 0.00000001</span>
+            <span>12:10:13</span>
+          </div>
+          <div className="history-msg">
+            <span className="lose-text">Lose 0.00000001</span>
+            <span>12:10:13</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
