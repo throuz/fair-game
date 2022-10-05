@@ -1,5 +1,15 @@
-#root {
+.app {
+  display: grid;
+  gap: 2em;
   max-width: 1280px;
   padding: 2rem;
   text-align: center;
+}
+
+.card {
+  display: grid;
+  gap: 1em;
+  background: #666;
+  border-radius: 8px;
+  padding: 1em;
 }
