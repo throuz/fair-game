@@ -29,6 +29,36 @@ const App = () => {
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
+          <div className="history-msg">
+            <span>Win</span>
+            <span>0.00000001</span>
+            <span>12:10:13</span>
+          </div>
+          <div className="history-msg">
+            <span>Lose</span>
+            <span>0.00000001</span>
+            <span>12:10:13</span>
+          </div>
+          <div className="history-msg">
+            <span>Win</span>
+            <span>0.00000001</span>
+            <span>12:10:13</span>
+          </div>
+          <div className="history-msg">
+            <span>Lose</span>
+            <span>0.00000001</span>
+            <span>12:10:13</span>
+          </div>
+          <div className="history-msg">
+            <span>Win</span>
+            <span>0.00000001</span>
+            <span>12:10:13</span>
+          </div>
+          <div className="history-msg">
+            <span>Lose</span>
+            <span>0.00000001</span>
+            <span>12:10:13</span>
+          </div>
         </div>
       </div>
     </div>
