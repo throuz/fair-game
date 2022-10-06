@@ -20,11 +20,13 @@ const App = () => {
         <h2>History</h2>
         <div className="history-list">
           <div className="history-msg">
-            <span className="win-text">Win 0.00000001</span>
+            <span>Win</span>
+            <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
-            <span className="lose-text">Lose 0.00000001</span>
+            <span>Lose</span>
+            <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
         </div>

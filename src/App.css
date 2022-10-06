@@ -15,14 +15,6 @@
 }
 
 .history-msg {
-  display: flex;
-  justify-content: space-between;
-}
-
-.win-text {
-  color: rgb(153, 255, 0);
-}
-
-.lose-text {
-  color: rgb(255, 0, 0);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
