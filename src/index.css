@@ -64,3 +64,13 @@ input {
 input:hover {
   border-color: #646cff;
 }
+
+table {
+  border: 1px solid #dddddd;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  padding: 5px;
+}
