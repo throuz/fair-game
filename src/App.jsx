@@ -85,41 +85,45 @@ const App = () => {
         </span>
         <span>E.g: Initial bet amount is 0.01 ETH</span>
         <table>
-          <tr>
-            <th>Status</th>
-            <th>Amount</th>
-            <th>Next Amount</th>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.01</td>
-            <td>0.01</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.01</td>
-            <td>0.02</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.02</td>
-            <td>0.04</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.04</td>
-            <td>0.08</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.08</td>
-            <td>0.01</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.01</td>
-            <td>0.01</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Next Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Win</td>
+              <td>0.01</td>
+              <td>0.01</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>0.01</td>
+              <td>0.02</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>0.02</td>
+              <td>0.04</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>0.04</td>
+              <td>0.08</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>0.08</td>
+              <td>0.01</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>0.01</td>
+              <td>0.01</td>
+            </tr>
+          </tbody>
         </table>
         <h4>Anti-Martingale:</h4>
         <span className="text-left">
@@ -128,41 +132,45 @@ const App = () => {
         </span>
         <span>E.g: Initial bet amount is 0.01 ETH</span>
         <table>
-          <tr>
-            <th>Status</th>
-            <th>Amount</th>
-            <th>Next Amount</th>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.01</td>
-            <td>0.02</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.02</td>
-            <td>0.01</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.01</td>
-            <td>0.01</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.01</td>
-            <td>0.02</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.02</td>
-            <td>0.04</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.04</td>
-            <td>0.08</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Next Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Win</td>
+              <td>0.01</td>
+              <td>0.02</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>0.02</td>
+              <td>0.01</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>0.01</td>
+              <td>0.01</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>0.01</td>
+              <td>0.02</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>0.02</td>
+              <td>0.04</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>0.04</td>
+              <td>0.08</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
