@@ -19,6 +19,7 @@ const App = () => {
         <button>No Strategy</button>
         <button>Martingale</button>
         <button>Anti-Martingale</button>
+        <h2>--</h2>
         <input type="number" placeholder="Please enter bet amount" />
         <button>Bet</button>
       </div>
@@ -27,41 +28,49 @@ const App = () => {
         <div className="history-list">
           <div className="history-msg">
             <span>Win</span>
+            <span>55</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
             <span>Lose</span>
+            <span>43</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
             <span>Win</span>
+            <span>67</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
             <span>Lose</span>
+            <span>23</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
             <span>Win</span>
+            <span>57</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
             <span>Lose</span>
+            <span>12</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
             <span>Win</span>
+            <span>88</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>
           <div className="history-msg">
             <span>Lose</span>
+            <span>44</span>
             <span>0.00000001</span>
             <span>12:10:13</span>
           </div>

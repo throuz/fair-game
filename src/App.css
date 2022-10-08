@@ -16,7 +16,8 @@
 
 .history-msg {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr 2fr 2fr;
 }
 
 .text-left {
