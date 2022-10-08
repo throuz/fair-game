@@ -15,7 +15,8 @@ const App = () => {
       </div>
       <div className="card">
         <h2>Bet</h2>
-        <span>Please choose a strategy to auto bet or bet manually</span>
+        <span>Please choose a strategy</span>
+        <button>No Strategy</button>
         <button>Martingale</button>
         <button>Anti-Martingale</button>
         <input type="number" placeholder="Please enter bet amount" />
@@ -68,20 +69,19 @@ const App = () => {
       </div>
       <div className="card">
         <h2>How to play</h2>
-        <h3>Manual Bet</h3>
         <span className="text-left">
-          Enter the desired bet amount and click the bet button.
+          Enter the desired bet amount and click the bet button, if the number
+          is greater than 50, is win and you will get double bet amount. Every
+          bet has a 50% chance of winning. There are three strategies to choose
+          from:
         </span>
-        <h3>Auto Bet</h3>
+        <h3>No Strategy</h3>
+        <span>Manual betting, required for each bet.</span>
+        <h3>Martingale</h3>
         <span className="text-left">
-          Choose a strategy and enter the bet amount, then click the bet button.
-          <br />
-          There are currently two strategies to choose from:
-        </span>
-        <h4>Martingale:</h4>
-        <span className="text-left">
-          If win, next bet amount is initial bet amount, if lose, next bet is
-          double previous bet amount.
+          Automatic betting, which can be stopped at any time. If win, next bet
+          amount is initial bet amount, if lose, next bet is double previous bet
+          amount.
         </span>
         <span>E.g: Initial bet amount is 0.01 ETH</span>
         <table>
@@ -125,10 +125,11 @@ const App = () => {
             </tr>
           </tbody>
         </table>
-        <h4>Anti-Martingale:</h4>
+        <h3>Anti-Martingale</h3>
         <span className="text-left">
-          If win, next bet amount is double previous bet amount, if lose, next
-          bet is initial bet amount.
+          Automatic betting, which can be stopped at any time. If win, next bet
+          amount is double previous bet amount, if lose, next bet is initial bet
+          amount.
         </span>
         <span>E.g: Initial bet amount is 0.01 ETH</span>
         <table>
