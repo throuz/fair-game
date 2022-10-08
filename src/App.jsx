@@ -25,56 +25,79 @@ const App = () => {
       </div>
       <div className="card">
         <h2>History</h2>
-        <div className="history-list">
-          <div className="history-msg">
-            <span>Win</span>
-            <span>55</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-          <div className="history-msg">
-            <span>Lose</span>
-            <span>43</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-          <div className="history-msg">
-            <span>Win</span>
-            <span>67</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-          <div className="history-msg">
-            <span>Lose</span>
-            <span>23</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-          <div className="history-msg">
-            <span>Win</span>
-            <span>57</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-          <div className="history-msg">
-            <span>Lose</span>
-            <span>12</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-          <div className="history-msg">
-            <span>Win</span>
-            <span>88</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-          <div className="history-msg">
-            <span>Lose</span>
-            <span>44</span>
-            <span>0.00000001</span>
-            <span>12:10:13</span>
-          </div>
-        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Number</th>
+              <th>Amount</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Win</td>
+              <td>55</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>43</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>55</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>43</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>55</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>43</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>55</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>43</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Win</td>
+              <td>55</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+            <tr>
+              <td>Lose</td>
+              <td>43</td>
+              <td>0.00000001</td>
+              <td>12:10:13</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div className="card">
         <h2>How to play</h2>

@@ -14,12 +14,6 @@
   padding: 1em;
 }
 
-.history-msg {
-  display: grid;
-  gap: 1em;
-  grid-template-columns: 1fr 1fr 2fr 2fr;
-}
-
 .text-left {
   text-align: left;
 }
