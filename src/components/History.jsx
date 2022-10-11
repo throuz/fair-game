@@ -1,0 +1,70 @@
+const History = () => {
+  return (
+    <div className="card">
+      <h2>History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Win</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Lose</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Win</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Lose</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Win</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Lose</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Win</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Lose</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Win</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+          <tr>
+            <td>Lose</td>
+            <td>0.00000001</td>
+            <td>12:10:13</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default History;
