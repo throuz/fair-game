@@ -1,0 +1,10 @@
+.strategy-btn {
+  background: #999;
+  transition: 0.25s;
+  font-weight: bolder;
+}
+
+.active-strategy-btn {
+  background: gold;
+  color: #1a1a1a;
+}
