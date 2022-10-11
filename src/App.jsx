@@ -16,7 +16,6 @@ const App = () => {
         </div>
         <div className="card">
           <h2>Bet</h2>
-          <span>Please choose a strategy</span>
           <button>No Strategy</button>
           <button>Martingale</button>
           <button>Anti-Martingale</button>

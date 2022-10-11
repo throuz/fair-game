@@ -10,6 +10,7 @@
 }
 
 .card {
+  align-content: start;
   background: #666;
   border-radius: 8px;
   display: grid;
