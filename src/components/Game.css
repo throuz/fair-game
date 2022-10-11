@@ -1,7 +1,7 @@
 .strategy-btn {
   background: #999;
-  transition: 0.25s;
   font-weight: bolder;
+  transition: 0.25s;
 }
 
 .active-strategy-btn {
