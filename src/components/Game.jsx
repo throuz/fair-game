@@ -7,30 +7,32 @@ const Game = () => {
   return (
     <div className="card">
       <h2>Game</h2>
-      <button
-        className={`strategy-btn ${
-          strategy === "noStrategy" ? "active-strategy-btn" : ""
-        }`}
-        onClick={() => setStrategy("noStrategy")}
-      >
-        No Strategy
-      </button>
-      <button
-        className={`strategy-btn ${
-          strategy === "martingale" ? "active-strategy-btn" : ""
-        }`}
-        onClick={() => setStrategy("martingale")}
-      >
-        Martingale
-      </button>
-      <button
-        className={`strategy-btn ${
-          strategy === "antiMartingale" ? "active-strategy-btn" : ""
-        }`}
-        onClick={() => setStrategy("antiMartingale")}
-      >
-        Anti-Martingale
-      </button>
+      <div className="strategy-btn-group">
+        <button
+          className={`strategy-btn ${
+            strategy === "noStrategy" ? "active-strategy-btn" : ""
+          }`}
+          onClick={() => setStrategy("noStrategy")}
+        >
+          No Strategy
+        </button>
+        <button
+          className={`strategy-btn ${
+            strategy === "martingale" ? "active-strategy-btn" : ""
+          }`}
+          onClick={() => setStrategy("martingale")}
+        >
+          Martingale
+        </button>
+        <button
+          className={`strategy-btn ${
+            strategy === "antiMartingale" ? "active-strategy-btn" : ""
+          }`}
+          onClick={() => setStrategy("antiMartingale")}
+        >
+          Anti-Martingale
+        </button>
+      </div>
       <h2>--</h2>
       <input type="number" placeholder="Please enter bet amount" />
       <button>Bet</button>

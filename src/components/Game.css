@@ -1,3 +1,9 @@
+.strategy-btn-group {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .strategy-btn {
   background: #999;
   font-weight: bolder;
@@ -7,4 +13,10 @@
 .active-strategy-btn {
   background: gold;
   color: #1a1a1a;
+}
+
+@media screen and (max-width: 900px) {
+  .strategy-btn-group {
+    grid-template-columns: auto;
+  }
 }
