@@ -1,6 +1,12 @@
 import "./Information.css";
+import { StoreContext } from "../store";
+import { useContext } from "react";
 
 const Information = () => {
+  const { store } = useContext(StoreContext);
+
+  console.log(store);
+
   return (
     <div className="card">
       <h2>Information</h2>
