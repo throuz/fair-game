@@ -5,9 +5,7 @@ import { useContext, useState } from "react";
 const Information = () => {
   const { store, setStore } = useContext(StoreContext);
   const { accountStatus, account } = store;
-  const [isConnectBtnDisable, setIsConnectBtnDisable] = useState(false);
-
-  console.log(accountStatus);
+  const [isConnecting, setIsConnecting] = useState(false);
 
   const onConnectBtnClickMap = {
     metaMaskRequired: () => {
@@ -15,12 +13,12 @@ const Information = () => {
     },
     notConnected: async () => {
       try {
-        setIsConnectBtnDisable(true);
+        setIsConnecting(true);
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
         setStore({ accountStatus: "connected", account: accounts[0] });
-        setIsConnectBtnDisable(false);
+        setIsConnecting(false);
       } catch (error) {
         console.error(error);
       }
@@ -41,7 +39,7 @@ const Information = () => {
       <h2>Information</h2>
       <button
         className="connect-btn"
-        disabled={isConnectBtnDisable}
+        disabled={isConnecting}
         onClick={onConnectBtnClickMap[accountStatus]}
       >
         {connectBtnTextMap[accountStatus]}
