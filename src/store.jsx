@@ -12,9 +12,8 @@ export default ({ children }) => {
         if (ethereum && ethereum.isMetaMask) {
           setStore({ accountStatus: "notConnected" });
           const accounts = await ethereum.request({ method: "eth_accounts" });
-          const account = accounts[0];
-          if (account) {
-            setStore({ accountStatus: "connected", account });
+          if (accounts[0]) {
+            setStore({ accountStatus: "connected", account: accounts[0] });
           }
         }
       } catch (error) {
