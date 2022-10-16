@@ -32,6 +32,7 @@ const Information = () => {
             ...store,
             balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
           });
+          setAmount("");
         }
       }
     } catch (error) {
@@ -52,6 +53,7 @@ const Information = () => {
             ...store,
             balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
           });
+          setAmount("");
         }
       }
     } catch (error) {
