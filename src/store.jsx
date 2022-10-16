@@ -1,19 +1,35 @@
 import { createContext, useEffect, useState } from "react";
+import { ethers } from "ethers";
+import useFairGameContract from "./hooks/useFairGameContract";
 
 export const StoreContext = createContext(null);
 
 export default ({ children }) => {
-  const [store, setStore] = useState({ accountStatus: "metaMaskRequired" });
+  const fairGameContract = useFairGameContract();
+  const [store, setStore] = useState({
+    status: "metaMaskRequired",
+    address: null,
+    balance: null,
+  });
 
   useEffect(() => {
     (async () => {
       try {
         const { ethereum } = window;
         if (ethereum && ethereum.isMetaMask) {
-          setStore({ accountStatus: "notConnected" });
+          setStore({
+            status: "notConnected",
+            address: null,
+            balance: null,
+          });
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts[0]) {
-            setStore({ accountStatus: "connected", account: accounts[0] });
+            const userBalance = await fairGameContract.users(accounts[0]);
+            setStore({
+              status: "connected",
+              address: accounts[0],
+              balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+            });
           }
         }
       } catch (error) {

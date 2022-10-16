@@ -7,8 +7,8 @@ import ConnectButton from "./ConnectButton";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const Information = () => {
-  const { store } = useContext(StoreContext);
-  const { accountStatus } = store;
+  const { store, setStore } = useContext(StoreContext);
+  const { status, address } = store;
   const fairGameContract = useFairGameContract();
   const [amount, setAmount] = useState("");
   const [isAmountValid, setIsAmountValid] = useState(true);
@@ -21,12 +21,17 @@ const Information = () => {
 
   const onDepositClick = async () => {
     try {
-      if (accountStatus === "connected") {
+      if (status === "connected") {
         if (isAmountValid) {
           const depositTxn = await fairGameContract.deposit({
             value: ethers.utils.parseEther(amount),
           });
           await depositTxn.wait();
+          const userBalance = await fairGameContract.users(address);
+          setStore({
+            ...store,
+            balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+          });
         }
       }
     } catch (error) {
@@ -36,12 +41,17 @@ const Information = () => {
 
   const onWithdrawalClick = async () => {
     try {
-      if (accountStatus === "connected") {
+      if (status === "connected") {
         if (isAmountValid) {
           const withdrawalTxn = await fairGameContract.withdrawal(
             ethers.utils.parseEther(amount)
           );
           await withdrawalTxn.wait();
+          const userBalance = await fairGameContract.users(address);
+          setStore({
+            ...store,
+            balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+          });
         }
       }
     } catch (error) {
