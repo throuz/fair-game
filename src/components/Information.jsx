@@ -1,49 +1,11 @@
 import "./Information.css";
-import { StoreContext } from "../store";
-import { useContext, useState } from "react";
+import ConnectButton from "./ConnectButton";
 
 const Information = () => {
-  const { store, setStore } = useContext(StoreContext);
-  const { accountStatus, account } = store;
-  const [isConnecting, setIsConnecting] = useState(false);
-
-  const onConnectBtnClickMap = {
-    metaMaskRequired: () => {
-      window.open("https://metamask.io/", "_blank").focus();
-    },
-    notConnected: async () => {
-      try {
-        setIsConnecting(true);
-        const accounts = await ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        setStore({ accountStatus: "connected", account: accounts[0] });
-        setIsConnecting(false);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    connected: () => {
-      window.open(`https://bscscan.com/address/${account}`, "_blank").focus();
-    },
-  };
-
-  const connectBtnTextMap = {
-    metaMaskRequired: "Install MetaMask",
-    notConnected: "Connect MetaMask",
-    connected: account,
-  };
-
   return (
     <div className="card">
       <h2>Information</h2>
-      <button
-        className="connect-btn"
-        disabled={isConnecting}
-        onClick={onConnectBtnClickMap[accountStatus]}
-      >
-        {connectBtnTextMap[accountStatus]}
-      </button>
+      <ConnectButton />
       <h2>26.57865327 BNB</h2>
       <input type="number" placeholder="Please enter amount" />
       <div className="information-btn-group">

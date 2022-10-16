@@ -4,11 +4,6 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.connect-btn {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 @media screen and (max-width: 900px) {
   .information-btn-group {
     grid-template-columns: auto;

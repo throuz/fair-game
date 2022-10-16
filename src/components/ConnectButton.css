@@ -1,0 +1,4 @@
+.connect-btn {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
