@@ -1,4 +1,5 @@
 import { abi } from "../utils/FairGame.json";
+import { ethers } from "ethers";
 
 const useFairGameContract = () => {
   const { ethereum } = window;
