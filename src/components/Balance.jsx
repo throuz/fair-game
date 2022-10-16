@@ -5,7 +5,7 @@ import useFairGameContract from "../hooks/useFairGameContract";
 
 const Balance = () => {
   const { store } = useContext(StoreContext);
-  const { accountStatus } = store;
+  const { accountStatus, account } = store;
   const fairGameContract = useFairGameContract();
   const [balance, setBalance] = useState("--");
 
@@ -13,8 +13,7 @@ const Balance = () => {
     (async () => {
       try {
         if (accountStatus === "connected") {
-          const accounts = await ethereum.request({ method: "eth_accounts" });
-          const userBalance = await fairGameContract.users(accounts[0]);
+          const userBalance = await fairGameContract.users(account);
           const formatedUserBalance = ethers.utils.formatEther(userBalance);
           setBalance(Number(formatedUserBalance).toFixed(8));
         }
