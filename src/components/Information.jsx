@@ -2,6 +2,7 @@ import "./Information.css";
 import { ethers } from "ethers";
 import { StoreContext } from "../store";
 import { useContext, useState } from "react";
+import AmountInput from "./AmountInput";
 import Balance from "./Balance";
 import ConnectButton from "./ConnectButton";
 import useFairGameContract from "../hooks/useFairGameContract";
@@ -22,7 +23,7 @@ const Information = () => {
   const onDepositClick = async () => {
     try {
       if (status === "connected") {
-        if (isAmountValid) {
+        if (amount && isAmountValid) {
           const depositTxn = await fairGameContract.deposit({
             value: ethers.utils.parseEther(amount),
           });
@@ -43,7 +44,7 @@ const Information = () => {
   const onWithdrawalClick = async () => {
     try {
       if (status === "connected") {
-        if (isAmountValid) {
+        if (amount && isAmountValid) {
           const withdrawalTxn = await fairGameContract.withdrawal(
             ethers.utils.parseEther(amount)
           );
@@ -66,17 +67,11 @@ const Information = () => {
       <h2>Information</h2>
       <ConnectButton />
       <Balance />
-      <div>
-        <input
-          type="number"
-          placeholder="Please enter amount"
-          value={amount}
-          onChange={onAmountInputChange}
-        />
-        {!isAmountValid && (
-          <div className="input-error-msg">Please enter a valid amount</div>
-        )}
-      </div>
+      <AmountInput
+        amount={amount}
+        onAmountInputChange={onAmountInputChange}
+        isAmountValid={isAmountValid}
+      />
       <div className="information-btn-group">
         <button onClick={onDepositClick}>Deposit</button>
         <button onClick={onWithdrawalClick}>Withdrawal</button>
