@@ -1,21 +1,50 @@
 import "./Game.css";
 import { ethers } from "ethers";
 import { StoreContext } from "../store";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AmountInput from "./AmountInput";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const Game = () => {
   const { store, setStore } = useContext(StoreContext);
-  const { status, address } = store;
+  const { status, address, balance } = store;
   const fairGameContract = useFairGameContract();
   const [strategy, setStrategy] = useState("noStrategy");
+  const [martingaleBetting, setMartingaleBetting] = useState(false);
+  const [initialAmount, setInitialAmount] = useState("");
   const [amount, setAmount] = useState("");
   const [isAmountValid, setIsAmountValid] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (martingaleBetting) {
+          const betTxn = await fairGameContract.bet(
+            ethers.utils.parseEther(amount)
+          );
+          await betTxn.wait();
+          const userBalance = await fairGameContract.users(address);
+          if (userBalance > balance) {
+            setAmount(initialAmount);
+          } else {
+            setAmount(String(amount * 2));
+          }
+          setStore({
+            ...store,
+            balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        setMartingaleBetting(false);
+      }
+    })();
+  }, [balance, martingaleBetting]);
 
   const onAmountInputChange = (e) => {
     const newAmount = e.target.value;
     setIsAmountValid(newAmount > 0 && /^[0-9]+(.[0-9]{0,8})?$/.test(newAmount));
+    setInitialAmount(newAmount);
     setAmount(newAmount);
   };
 
@@ -39,23 +68,11 @@ const Game = () => {
         console.log(error);
       }
     },
-    martingale: async () => {
-      try {
-        if (status === "connected") {
-          if (amount && isAmountValid) {
-            const betTxn = await fairGameContract.bet(
-              ethers.utils.parseEther(amount)
-            );
-            await betTxn.wait();
-            const userBalance = await fairGameContract.users(address);
-            setStore({
-              ...store,
-              balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
-            });
-          }
+    martingale: () => {
+      if (status === "connected") {
+        if (amount && isAmountValid) {
+          setMartingaleBetting(!martingaleBetting);
         }
-      } catch (error) {
-        console.log(error);
       }
     },
     antiMartingale: async () => {
