@@ -41,14 +41,14 @@ const Information = () => {
     }
   };
 
-  const onWithdrawalClick = async () => {
+  const onWithdrawClick = async () => {
     try {
       if (status === "connected") {
         if (amount && isAmountValid) {
-          const withdrawalTxn = await fairGameContract.withdrawal(
+          const withdrawTxn = await fairGameContract.withdraw(
             ethers.utils.parseEther(amount)
           );
-          await withdrawalTxn.wait();
+          await withdrawTxn.wait();
           const userBalance = await fairGameContract.users(address);
           setStore({
             ...store,
@@ -74,7 +74,7 @@ const Information = () => {
       />
       <div className="information-btn-group">
         <button onClick={onDepositClick}>Deposit</button>
-        <button onClick={onWithdrawalClick}>Withdrawal</button>
+        <button onClick={onWithdrawClick}>Withdraw</button>
       </div>
     </div>
   );
