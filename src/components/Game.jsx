@@ -11,6 +11,7 @@ const Game = () => {
   const fairGameContract = useFairGameContract();
   const [strategy, setStrategy] = useState("noStrategy");
   const [martingaleBetting, setMartingaleBetting] = useState(false);
+  const [antiMartingaleBetting, setAntiMartingaleBetting] = useState(false);
   const [initialAmount, setInitialAmount] = useState("");
   const [amount, setAmount] = useState("");
   const [isAmountValid, setIsAmountValid] = useState(true);
@@ -40,6 +41,32 @@ const Game = () => {
       }
     })();
   }, [balance, martingaleBetting]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (antiMartingaleBetting) {
+          const betTxn = await fairGameContract.bet(
+            ethers.utils.parseEther(amount)
+          );
+          await betTxn.wait();
+          const userBalance = await fairGameContract.users(address);
+          if (userBalance > balance) {
+            setAmount(String(amount * 2));
+          } else {
+            setAmount(initialAmount);
+          }
+          setStore({
+            ...store,
+            balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        setAntiMartingaleBetting(false);
+      }
+    })();
+  }, [balance, antiMartingaleBetting]);
 
   const onAmountInputChange = (e) => {
     const newAmount = e.target.value;
@@ -75,23 +102,11 @@ const Game = () => {
         }
       }
     },
-    antiMartingale: async () => {
-      try {
-        if (status === "connected") {
-          if (amount && isAmountValid) {
-            const betTxn = await fairGameContract.bet(
-              ethers.utils.parseEther(amount)
-            );
-            await betTxn.wait();
-            const userBalance = await fairGameContract.users(address);
-            setStore({
-              ...store,
-              balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
-            });
-          }
+    antiMartingale: () => {
+      if (status === "connected") {
+        if (amount && isAmountValid) {
+          setAntiMartingaleBetting(!antiMartingaleBetting);
         }
-      } catch (error) {
-        console.log(error);
       }
     },
   };
