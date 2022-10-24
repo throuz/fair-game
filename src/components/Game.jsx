@@ -25,15 +25,15 @@ const Game = () => {
           );
           await betTxn.wait();
           const userBalance = await fairGameContract.users(address);
-          if (userBalance > balance) {
+          const newBalance = Number(
+            ethers.utils.formatEther(userBalance)
+          ).toFixed(8);
+          if (newBalance > balance) {
             setAmount(initialAmount);
           } else {
             setAmount(String(amount * 2));
           }
-          setStore({
-            ...store,
-            balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
-          });
+          setStore({ ...store, balance: newBalance });
         }
       } catch (error) {
         console.log(error);
@@ -51,15 +51,15 @@ const Game = () => {
           );
           await betTxn.wait();
           const userBalance = await fairGameContract.users(address);
-          if (userBalance > balance) {
+          const newBalance = Number(
+            ethers.utils.formatEther(userBalance)
+          ).toFixed(8);
+          if (newBalance > balance) {
             setAmount(String(amount * 2));
           } else {
             setAmount(initialAmount);
           }
-          setStore({
-            ...store,
-            balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
-          });
+          setStore({ ...store, balance: newBalance });
         }
       } catch (error) {
         console.log(error);
