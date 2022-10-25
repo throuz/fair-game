@@ -1,11 +1,9 @@
 import { StoreContext } from "../store";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 const History = () => {
-  const { store, setStore } = useContext(StoreContext);
+  const { store } = useContext(StoreContext);
   const { history } = store;
-
-  console.log(history);
 
   return (
     <div className="card">

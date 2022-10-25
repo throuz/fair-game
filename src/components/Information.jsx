@@ -31,7 +31,7 @@ const Information = () => {
             params: [address],
           });
           if (
-            Number(amount) < Number(ethers.utils.formatEther(metaMaskBalance))
+            Number(amount) <= Number(ethers.utils.formatEther(metaMaskBalance))
           ) {
             const depositTxn = await fairGameContract.deposit({
               value: ethers.utils.parseEther(amount),
@@ -59,7 +59,7 @@ const Information = () => {
     try {
       if (status === "connected") {
         if (amount && isAmountValid) {
-          if (Number(amount) < balance) {
+          if (Number(amount) <= balance) {
             const withdrawTxn = await fairGameContract.withdraw(
               ethers.utils.parseEther(amount)
             );
