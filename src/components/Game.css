@@ -15,6 +15,14 @@
   color: #1a1a1a;
 }
 
+.win-text {
+  color: lightgreen;
+}
+
+.lose-text {
+  color: darkred;
+}
+
 @media screen and (max-width: 900px) {
   .strategy-btn-group {
     grid-template-columns: auto;

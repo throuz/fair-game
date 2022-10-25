@@ -10,6 +10,7 @@ const Game = () => {
   const { status, address, balance } = store;
   const fairGameContract = useFairGameContract();
   const [strategy, setStrategy] = useState("noStrategy");
+  const [betResult, setBetResult] = useState("--");
   const [martingaleBetting, setMartingaleBetting] = useState(false);
   const [antiMartingaleBetting, setAntiMartingaleBetting] = useState(false);
   const [initialAmount, setInitialAmount] = useState("");
@@ -30,8 +31,10 @@ const Game = () => {
               ethers.utils.formatEther(userBalance)
             ).toFixed(8);
             if (newBalance > balance) {
+              setBetResult("win");
               setAmount(initialAmount);
             } else {
+              setBetResult("lose");
               setAmount(String(amount * 2));
             }
             setStore({ ...store, balance: newBalance });
@@ -60,8 +63,10 @@ const Game = () => {
               ethers.utils.formatEther(userBalance)
             ).toFixed(8);
             if (newBalance > balance) {
+              setBetResult("win");
               setAmount(String(amount * 2));
             } else {
+              setBetResult("lose");
               setAmount(initialAmount);
             }
             setStore({ ...store, balance: newBalance });
@@ -96,12 +101,15 @@ const Game = () => {
               );
               await betTxn.wait();
               const userBalance = await fairGameContract.users(address);
-              setStore({
-                ...store,
-                balance: Number(ethers.utils.formatEther(userBalance)).toFixed(
-                  8
-                ),
-              });
+              const newBalance = Number(
+                ethers.utils.formatEther(userBalance)
+              ).toFixed(8);
+              if (newBalance > balance) {
+                setBetResult("win");
+              } else {
+                setBetResult("lose");
+              }
+              setStore({ ...store, balance: newBalance });
             } else {
               setIsAmountValid(false);
             }
@@ -158,7 +166,9 @@ const Game = () => {
           Anti-Martingale
         </button>
       </div>
-      <h2>--</h2>
+      <h2 className={betResult === "--" ? "" : `${betResult}-text`}>
+        {betResult.charAt(0).toUpperCase() + betResult.slice(1)}
+      </h2>
       <AmountInput
         amount={amount}
         onAmountInputChange={onAmountInputChange}
