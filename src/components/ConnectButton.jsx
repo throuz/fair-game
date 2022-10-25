@@ -1,14 +1,13 @@
 import "./ConnectButton.css";
 import { ethers } from "ethers";
 import { StoreContext } from "../store";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const ConnectButton = () => {
   const { store, setStore } = useContext(StoreContext);
   const { status, address } = store;
   const fairGameContract = useFairGameContract();
-  const [isConnecting, setIsConnecting] = useState(false);
 
   const onConnectBtnClickMap = {
     metaMaskRequired: () => {
@@ -16,7 +15,6 @@ const ConnectButton = () => {
     },
     notConnected: async () => {
       try {
-        setIsConnecting(true);
         const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
@@ -28,7 +26,6 @@ const ConnectButton = () => {
           balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
           modalShow: false,
         });
-        setIsConnecting(false);
       } catch (error) {
         console.error(error);
       }
@@ -45,11 +42,7 @@ const ConnectButton = () => {
   };
 
   return (
-    <button
-      className="connect-btn"
-      disabled={isConnecting}
-      onClick={onConnectBtnClickMap[status]}
-    >
+    <button className="connect-btn" onClick={onConnectBtnClickMap[status]}>
       {connectBtnTextMap[status]}
     </button>
   );
