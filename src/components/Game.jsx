@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { StoreContext } from "../store";
 import { useContext, useEffect, useState } from "react";
 import AmountInput from "./AmountInput";
+import formatEther from "../utils/formatEther";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const Game = () => {
@@ -27,9 +28,7 @@ const Game = () => {
             );
             await betTxn.wait();
             const userBalance = await fairGameContract.users(address);
-            const newBalance = Number(
-              ethers.utils.formatEther(userBalance)
-            ).toFixed(8);
+            const newBalance = formatEther(userBalance);
             const isWin = newBalance > balance;
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
@@ -67,9 +66,7 @@ const Game = () => {
             );
             await betTxn.wait();
             const userBalance = await fairGameContract.users(address);
-            const newBalance = Number(
-              ethers.utils.formatEther(userBalance)
-            ).toFixed(8);
+            const newBalance = formatEther(userBalance);
             const isWin = newBalance > balance;
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
@@ -120,9 +117,7 @@ const Game = () => {
               );
               await betTxn.wait();
               const userBalance = await fairGameContract.users(address);
-              const newBalance = Number(
-                ethers.utils.formatEther(userBalance)
-              ).toFixed(8);
+              const newBalance = formatEther(userBalance);
               const isWin = newBalance > balance;
               const newHistory = history.slice(0, 29);
               newHistory.unshift({

@@ -1,7 +1,7 @@
 import "./ConnectButton.css";
-import { ethers } from "ethers";
 import { StoreContext } from "../store";
 import { useContext } from "react";
+import formatEther from "../utils/formatEther";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const ConnectButton = () => {
@@ -23,7 +23,7 @@ const ConnectButton = () => {
           ...store,
           status: "connected",
           address: accounts[0],
-          balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+          balance: formatEther(userBalance),
           modalShow: false,
         });
       } catch (error) {

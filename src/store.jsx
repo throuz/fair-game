@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { ethers } from "ethers";
+import formatEther from "./utils/formatEther";
 import useFairGameContract from "./hooks/useFairGameContract";
 
 export const StoreContext = createContext(null);
@@ -30,7 +30,7 @@ export default ({ children }) => {
               ...store,
               status: "connected",
               address: accounts[0],
-              balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+              balance: formatEther(userBalance),
             });
           }
         }

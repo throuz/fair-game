@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import AmountInput from "./AmountInput";
 import Balance from "./Balance";
 import ConnectButton from "./ConnectButton";
+import formatEther from "../utils/formatEther";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const Information = () => {
@@ -33,9 +34,7 @@ const Information = () => {
             method: "eth_getBalance",
             params: [address],
           });
-          if (
-            Number(amount) <= Number(ethers.utils.formatEther(metaMaskBalance))
-          ) {
+          if (Number(amount) <= formatEther(metaMaskBalance)) {
             const depositTxn = await fairGameContract.deposit({
               value: ethers.utils.parseEther(amount),
             });
@@ -43,7 +42,7 @@ const Information = () => {
             const userBalance = await fairGameContract.users(address);
             setStore({
               ...store,
-              balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+              balance: formatEther(userBalance),
             });
             setAmount("");
           } else {
@@ -73,7 +72,7 @@ const Information = () => {
             const userBalance = await fairGameContract.users(address);
             setStore({
               ...store,
-              balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+              balance: formatEther(userBalance),
             });
             setAmount("");
           } else {
