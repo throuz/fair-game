@@ -17,8 +17,8 @@ const History = () => {
           </tr>
         </thead>
         <tbody>
-          {history.map(({ status, amount, time }) => (
-            <tr>
+          {history.map(({ status, amount, time }, i) => (
+            <tr key={time + i}>
               <td>{status}</td>
               <td>{amount}</td>
               <td>{time}</td>
