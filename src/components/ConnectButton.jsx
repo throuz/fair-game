@@ -26,6 +26,7 @@ const ConnectButton = () => {
           status: "connected",
           address: accounts[0],
           balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
+          modalShow: false,
         });
         setIsConnecting(false);
       } catch (error) {

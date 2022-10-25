@@ -109,6 +109,9 @@ const Game = () => {
   const onBetClickMap = {
     noStrategy: async () => {
       try {
+        if (status === "metaMaskRequired" || status === "notConnected") {
+          setStore({ ...store, modalShow: true });
+        }
         if (status === "connected") {
           if (amount && isAmountValid) {
             if (Number(amount) < balance) {
@@ -146,6 +149,9 @@ const Game = () => {
       }
     },
     martingale: () => {
+      if (status === "metaMaskRequired" || status === "notConnected") {
+        setStore({ ...store, modalShow: true });
+      }
       if (status === "connected") {
         if (amount && isAmountValid) {
           setMartingaleBetting(!martingaleBetting);
@@ -153,6 +159,9 @@ const Game = () => {
       }
     },
     antiMartingale: () => {
+      if (status === "metaMaskRequired" || status === "notConnected") {
+        setStore({ ...store, modalShow: true });
+      }
       if (status === "connected") {
         if (amount && isAmountValid) {
           setAntiMartingaleBetting(!antiMartingaleBetting);

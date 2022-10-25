@@ -14,6 +14,7 @@ export default ({ children }) => {
     address: null,
     balance: null,
     history: history ?? [],
+    modalShow: false,
   });
 
   useEffect(() => {

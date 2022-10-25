@@ -24,6 +24,9 @@ const Information = () => {
 
   const onDepositClick = async () => {
     try {
+      if (status === "metaMaskRequired" || status === "notConnected") {
+        setStore({ ...store, modalShow: true });
+      }
       if (status === "connected") {
         if (amount && isAmountValid) {
           const metaMaskBalance = await ethereum.request({
@@ -57,6 +60,9 @@ const Information = () => {
 
   const onWithdrawClick = async () => {
     try {
+      if (status === "metaMaskRequired" || status === "notConnected") {
+        setStore({ ...store, modalShow: true });
+      }
       if (status === "connected") {
         if (amount && isAmountValid) {
           if (Number(amount) <= balance) {
