@@ -6,10 +6,14 @@ export const StoreContext = createContext(null);
 
 export default ({ children }) => {
   const fairGameContract = useFairGameContract();
+
+  const history = JSON.parse(localStorage.getItem("history"));
+
   const [store, setStore] = useState({
     status: "metaMaskRequired",
     address: null,
     balance: null,
+    history: history ?? [],
   });
 
   useEffect(() => {
@@ -17,15 +21,12 @@ export default ({ children }) => {
       try {
         const { ethereum } = window;
         if (ethereum && ethereum.isMetaMask) {
-          setStore({
-            status: "notConnected",
-            address: null,
-            balance: null,
-          });
+          setStore({ ...store, status: "notConnected" });
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts[0]) {
             const userBalance = await fairGameContract.users(accounts[0]);
             setStore({
+              ...store,
               status: "connected",
               address: accounts[0],
               balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),

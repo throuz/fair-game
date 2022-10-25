@@ -7,7 +7,7 @@ import useFairGameContract from "../hooks/useFairGameContract";
 
 const Game = () => {
   const { store, setStore } = useContext(StoreContext);
-  const { status, address, balance } = store;
+  const { status, address, balance, history } = store;
   const fairGameContract = useFairGameContract();
   const [strategy, setStrategy] = useState("noStrategy");
   const [betResult, setBetResult] = useState("--");
@@ -30,14 +30,22 @@ const Game = () => {
             const newBalance = Number(
               ethers.utils.formatEther(userBalance)
             ).toFixed(8);
-            if (newBalance > balance) {
+            const isWin = newBalance > balance;
+            const newHistory = history.slice(0, 29);
+            newHistory.unshift({
+              status: isWin ? "Win" : "Lose",
+              amount: Number(amount).toFixed(8),
+              time: new Date().toLocaleTimeString(),
+            });
+            localStorage.setItem("history", JSON.stringify(newHistory));
+            setStore({ ...store, balance: newBalance, history: newHistory });
+            if (isWin) {
               setBetResult("win");
               setAmount(initialAmount);
             } else {
               setBetResult("lose");
               setAmount(String(amount * 2));
             }
-            setStore({ ...store, balance: newBalance });
           } else {
             setIsAmountValid(false);
           }
@@ -62,14 +70,22 @@ const Game = () => {
             const newBalance = Number(
               ethers.utils.formatEther(userBalance)
             ).toFixed(8);
-            if (newBalance > balance) {
+            const isWin = newBalance > balance;
+            const newHistory = history.slice(0, 29);
+            newHistory.unshift({
+              status: isWin ? "Win" : "Lose",
+              amount: Number(amount).toFixed(8),
+              time: new Date().toLocaleTimeString(),
+            });
+            localStorage.setItem("history", JSON.stringify(newHistory));
+            setStore({ ...store, balance: newBalance, history: newHistory });
+            if (isWin) {
               setBetResult("win");
               setAmount(String(amount * 2));
             } else {
               setBetResult("lose");
               setAmount(initialAmount);
             }
-            setStore({ ...store, balance: newBalance });
           } else {
             setIsAmountValid(false);
           }
@@ -104,12 +120,20 @@ const Game = () => {
               const newBalance = Number(
                 ethers.utils.formatEther(userBalance)
               ).toFixed(8);
-              if (newBalance > balance) {
+              const isWin = newBalance > balance;
+              const newHistory = history.slice(0, 29);
+              newHistory.unshift({
+                status: isWin ? "Win" : "Lose",
+                amount: Number(amount).toFixed(8),
+                time: new Date().toLocaleTimeString(),
+              });
+              localStorage.setItem("history", JSON.stringify(newHistory));
+              setStore({ ...store, balance: newBalance, history: newHistory });
+              if (isWin) {
                 setBetResult("win");
               } else {
                 setBetResult("lose");
               }
-              setStore({ ...store, balance: newBalance });
             } else {
               setIsAmountValid(false);
             }

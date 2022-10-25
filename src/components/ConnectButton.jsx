@@ -22,6 +22,7 @@ const ConnectButton = () => {
         });
         const userBalance = await fairGameContract.users(accounts[0]);
         setStore({
+          ...store,
           status: "connected",
           address: accounts[0],
           balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),

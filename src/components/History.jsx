@@ -1,4 +1,12 @@
+import { StoreContext } from "../store";
+import { useContext, useEffect, useState } from "react";
+
 const History = () => {
+  const { store, setStore } = useContext(StoreContext);
+  const { history } = store;
+
+  console.log(history);
+
   return (
     <div className="card">
       <h2>History</h2>
@@ -11,56 +19,13 @@ const History = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Win</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Win</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
-          <tr>
-            <td>Lose</td>
-            <td>0.00000001</td>
-            <td>12:10:13</td>
-          </tr>
+          {history.map(({ status, amount, time }) => (
+            <tr>
+              <td>{status}</td>
+              <td>{amount}</td>
+              <td>{time}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
