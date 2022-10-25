@@ -46,6 +46,8 @@ const Information = () => {
           } else {
             setIsAmountValid(false);
           }
+        } else {
+          setIsAmountValid(false);
         }
       }
     } catch (error) {
@@ -71,6 +73,8 @@ const Information = () => {
           } else {
             setIsAmountValid(false);
           }
+        } else {
+          setIsAmountValid(false);
         }
       }
     } catch (error) {

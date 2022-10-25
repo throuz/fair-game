@@ -20,20 +20,24 @@ const Game = () => {
     (async () => {
       try {
         if (martingaleBetting) {
-          const betTxn = await fairGameContract.bet(
-            ethers.utils.parseEther(amount)
-          );
-          await betTxn.wait();
-          const userBalance = await fairGameContract.users(address);
-          const newBalance = Number(
-            ethers.utils.formatEther(userBalance)
-          ).toFixed(8);
-          if (newBalance > balance) {
-            setAmount(initialAmount);
+          if (Number(amount) < balance) {
+            const betTxn = await fairGameContract.bet(
+              ethers.utils.parseEther(amount)
+            );
+            await betTxn.wait();
+            const userBalance = await fairGameContract.users(address);
+            const newBalance = Number(
+              ethers.utils.formatEther(userBalance)
+            ).toFixed(8);
+            if (newBalance > balance) {
+              setAmount(initialAmount);
+            } else {
+              setAmount(String(amount * 2));
+            }
+            setStore({ ...store, balance: newBalance });
           } else {
-            setAmount(String(amount * 2));
+            setIsAmountValid(false);
           }
-          setStore({ ...store, balance: newBalance });
         }
       } catch (error) {
         console.log(error);
@@ -46,20 +50,24 @@ const Game = () => {
     (async () => {
       try {
         if (antiMartingaleBetting) {
-          const betTxn = await fairGameContract.bet(
-            ethers.utils.parseEther(amount)
-          );
-          await betTxn.wait();
-          const userBalance = await fairGameContract.users(address);
-          const newBalance = Number(
-            ethers.utils.formatEther(userBalance)
-          ).toFixed(8);
-          if (newBalance > balance) {
-            setAmount(String(amount * 2));
+          if (Number(amount) < balance) {
+            const betTxn = await fairGameContract.bet(
+              ethers.utils.parseEther(amount)
+            );
+            await betTxn.wait();
+            const userBalance = await fairGameContract.users(address);
+            const newBalance = Number(
+              ethers.utils.formatEther(userBalance)
+            ).toFixed(8);
+            if (newBalance > balance) {
+              setAmount(String(amount * 2));
+            } else {
+              setAmount(initialAmount);
+            }
+            setStore({ ...store, balance: newBalance });
           } else {
-            setAmount(initialAmount);
+            setIsAmountValid(false);
           }
-          setStore({ ...store, balance: newBalance });
         }
       } catch (error) {
         console.log(error);
@@ -70,7 +78,9 @@ const Game = () => {
 
   const onAmountInputChange = (e) => {
     const newAmount = e.target.value;
-    setIsAmountValid(newAmount > 0 && /^[0-9]+(.[0-9]{0,8})?$/.test(newAmount));
+    setIsAmountValid(
+      Number(newAmount) > 0 && /^[0-9]+(.[0-9]{0,8})?$/.test(newAmount)
+    );
     setInitialAmount(newAmount);
     setAmount(newAmount);
   };
@@ -80,15 +90,23 @@ const Game = () => {
       try {
         if (status === "connected") {
           if (amount && isAmountValid) {
-            const betTxn = await fairGameContract.bet(
-              ethers.utils.parseEther(amount)
-            );
-            await betTxn.wait();
-            const userBalance = await fairGameContract.users(address);
-            setStore({
-              ...store,
-              balance: Number(ethers.utils.formatEther(userBalance)).toFixed(8),
-            });
+            if (Number(amount) < balance) {
+              const betTxn = await fairGameContract.bet(
+                ethers.utils.parseEther(amount)
+              );
+              await betTxn.wait();
+              const userBalance = await fairGameContract.users(address);
+              setStore({
+                ...store,
+                balance: Number(ethers.utils.formatEther(userBalance)).toFixed(
+                  8
+                ),
+              });
+            } else {
+              setIsAmountValid(false);
+            }
+          } else {
+            setIsAmountValid(false);
           }
         }
       } catch (error) {
