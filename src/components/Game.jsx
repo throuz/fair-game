@@ -155,6 +155,8 @@ const Game = () => {
       if (status === "connected") {
         if (amount && isAmountValid) {
           setMartingaleBetting(!martingaleBetting);
+        } else {
+          setIsAmountValid(false);
         }
       }
     },
@@ -165,6 +167,8 @@ const Game = () => {
       if (status === "connected") {
         if (amount && isAmountValid) {
           setAntiMartingaleBetting(!antiMartingaleBetting);
+        } else {
+          setIsAmountValid(false);
         }
       }
     },
