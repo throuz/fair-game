@@ -26,7 +26,12 @@ const Information = () => {
         });
         const { ethereum } = window;
         if (ethereum && ethereum.isMetaMask) {
-          setStore({ ...store, status: "notConnected" });
+          setStore({
+            ...store,
+            status: "notConnected",
+            address: null,
+            balance: null,
+          });
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts[0]) {
             const userBalance = await fairGameContract.users(accounts[0]);
