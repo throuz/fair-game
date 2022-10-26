@@ -33,12 +33,14 @@ const ConnectButton = () => {
     connected: () => {
       window.open(`https://bscscan.com/address/${address}`, "_blank").focus();
     },
+    demo: () => {},
   };
 
   const connectBtnTextMap = {
     metaMaskRequired: "Install MetaMask",
     notConnected: "Connect MetaMask",
     connected: address,
+    demo: "Demo Account",
   };
 
   return (

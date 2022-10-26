@@ -15,6 +15,35 @@ const Information = () => {
   const [amount, setAmount] = useState("");
   const [isAmountValid, setIsAmountValid] = useState(true);
 
+  const onSwitchAccountClick = async () => {
+    if (status === "demo") {
+      try {
+        const { ethereum } = window;
+        if (ethereum && ethereum.isMetaMask) {
+          setStore({ ...store, status: "notConnected" });
+          const accounts = await ethereum.request({ method: "eth_accounts" });
+          if (accounts[0]) {
+            const userBalance = await fairGameContract.users(accounts[0]);
+            setStore({
+              ...store,
+              status: "connected",
+              address: accounts[0],
+              balance: formatEther(userBalance),
+            });
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setStore({
+        ...store,
+        status: "demo",
+        balance: 10000,
+      });
+    }
+  };
+
   const onAmountInputChange = (e) => {
     const newAmount = e.target.value;
     setIsAmountValid(
@@ -91,6 +120,9 @@ const Information = () => {
     <div className="card">
       <h2>Information</h2>
       <ConnectButton />
+      <button onClick={onSwitchAccountClick}>
+        Switch to {status === "demo" ? "real" : "demo"} account
+      </button>
       <Balance />
       <AmountInput
         amount={amount}
