@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import AmountInput from "./AmountInput";
 import formatEther from "../utils/formatEther";
 import useFairGameContract from "../hooks/useFairGameContract";
+import useInterval from "../hooks/useInterval";
 
 const Game = () => {
   const { store, setStore } = useContext(StoreContext);
@@ -12,11 +13,86 @@ const Game = () => {
   const fairGameContract = useFairGameContract();
   const [strategy, setStrategy] = useState("noStrategy");
   const [betResult, setBetResult] = useState("--");
+  const [demoMartingaleBetting, setDemoMartingaleBetting] = useState(false);
+  const [demoAntiMartingaleBetting, setDemoAntiMartingaleBetting] =
+    useState(false);
   const [martingaleBetting, setMartingaleBetting] = useState(false);
   const [antiMartingaleBetting, setAntiMartingaleBetting] = useState(false);
   const [initialAmount, setInitialAmount] = useState("");
   const [amount, setAmount] = useState("");
   const [isAmountValid, setIsAmountValid] = useState(true);
+
+  useInterval(
+    () => {
+      if (amount && isAmountValid && Number(amount) <= Number(balance)) {
+        const isWin = Math.random() > 0.5;
+        const newHistory = history.slice(0, 29);
+        newHistory.unshift({
+          status: isWin ? "Win" : "Lose",
+          amount: Number(amount).toFixed(8),
+          time: new Date().toLocaleTimeString(),
+        });
+        localStorage.setItem("history", JSON.stringify(newHistory));
+        if (isWin) {
+          setStore({
+            ...store,
+            balance: (Number(balance) + Number(amount)).toFixed(8),
+            history: newHistory,
+          });
+          setBetResult("win");
+          setAmount(initialAmount);
+        } else {
+          setStore({
+            ...store,
+            balance: (Number(balance) - Number(amount)).toFixed(8),
+            history: newHistory,
+          });
+          setBetResult("lose");
+          setAmount(String(amount * 2));
+        }
+      } else {
+        setIsAmountValid(false);
+        setDemoMartingaleBetting(false);
+      }
+    },
+    demoMartingaleBetting ? 100 : null
+  );
+
+  useInterval(
+    () => {
+      if (amount && isAmountValid && Number(amount) <= Number(balance)) {
+        const isWin = Math.random() > 0.5;
+        const newHistory = history.slice(0, 29);
+        newHistory.unshift({
+          status: isWin ? "Win" : "Lose",
+          amount: Number(amount).toFixed(8),
+          time: new Date().toLocaleTimeString(),
+        });
+        localStorage.setItem("history", JSON.stringify(newHistory));
+        if (isWin) {
+          setStore({
+            ...store,
+            balance: (Number(balance) + Number(amount)).toFixed(8),
+            history: newHistory,
+          });
+          setBetResult("win");
+          setAmount(String(amount * 2));
+        } else {
+          setStore({
+            ...store,
+            balance: (Number(balance) - Number(amount)).toFixed(8),
+            history: newHistory,
+          });
+          setBetResult("lose");
+          setAmount(initialAmount);
+        }
+      } else {
+        setIsAmountValid(false);
+        setDemoAntiMartingaleBetting(false);
+      }
+    },
+    demoAntiMartingaleBetting ? 100 : null
+  );
 
   useEffect(() => {
     (async () => {
@@ -106,6 +182,35 @@ const Game = () => {
   const onBetClickMap = {
     noStrategy: async () => {
       try {
+        if (status === "demo") {
+          if (amount && isAmountValid && Number(amount) <= Number(balance)) {
+            const isWin = Math.random() > 0.5;
+            const newHistory = history.slice(0, 29);
+            newHistory.unshift({
+              status: isWin ? "Win" : "Lose",
+              amount: Number(amount).toFixed(8),
+              time: new Date().toLocaleTimeString(),
+            });
+            localStorage.setItem("history", JSON.stringify(newHistory));
+            if (isWin) {
+              setStore({
+                ...store,
+                balance: (Number(balance) + Number(amount)).toFixed(8),
+                history: newHistory,
+              });
+              setBetResult("win");
+            } else {
+              setStore({
+                ...store,
+                balance: (Number(balance) - Number(amount)).toFixed(8),
+                history: newHistory,
+              });
+              setBetResult("lose");
+            }
+          } else {
+            setIsAmountValid(false);
+          }
+        }
         if (status === "metaMaskRequired" || status === "notConnected") {
           setStore({ ...store, modalShow: true });
         }
@@ -144,6 +249,13 @@ const Game = () => {
       }
     },
     martingale: () => {
+      if (status === "demo") {
+        if (demoMartingaleBetting) {
+          setDemoMartingaleBetting(false);
+        } else {
+          setDemoMartingaleBetting(true);
+        }
+      }
       if (status === "metaMaskRequired" || status === "notConnected") {
         setStore({ ...store, modalShow: true });
       }
@@ -156,6 +268,13 @@ const Game = () => {
       }
     },
     antiMartingale: () => {
+      if (status === "demo") {
+        if (demoAntiMartingaleBetting) {
+          setDemoAntiMartingaleBetting(false);
+        } else {
+          setDemoAntiMartingaleBetting(true);
+        }
+      }
       if (status === "metaMaskRequired" || status === "notConnected") {
         setStore({ ...store, modalShow: true });
       }
