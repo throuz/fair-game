@@ -63,7 +63,7 @@ const Information = () => {
       setStore({
         ...store,
         status: "demo",
-        balance: 10000,
+        balance: (10000).toFixed(8),
       });
     }
   };
@@ -78,6 +78,16 @@ const Information = () => {
 
   const onDepositClick = async () => {
     try {
+      if (status === "demo") {
+        if (amount && isAmountValid && Number(amount) <= 10000000) {
+          setStore({
+            ...store,
+            balance: (Number(balance) + Number(amount)).toFixed(8),
+          });
+        } else {
+          setIsAmountValid(false);
+        }
+      }
       if (status === "metaMaskRequired" || status === "notConnected") {
         setStore({ ...store, modalShow: true });
       }
@@ -112,12 +122,22 @@ const Information = () => {
 
   const onWithdrawClick = async () => {
     try {
+      if (status === "demo") {
+        if (amount && isAmountValid && Number(amount) <= Number(balance)) {
+          setStore({
+            ...store,
+            balance: (Number(balance) - Number(amount)).toFixed(8),
+          });
+        } else {
+          setIsAmountValid(false);
+        }
+      }
       if (status === "metaMaskRequired" || status === "notConnected") {
         setStore({ ...store, modalShow: true });
       }
       if (status === "connected") {
         if (amount && isAmountValid) {
-          if (Number(amount) <= balance) {
+          if (Number(amount) <= Number(balance)) {
             const withdrawTxn = await fairGameContract.withdraw(
               ethers.utils.parseEther(amount)
             );

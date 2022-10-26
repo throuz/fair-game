@@ -22,14 +22,14 @@ const Game = () => {
     (async () => {
       try {
         if (martingaleBetting) {
-          if (Number(amount) < balance) {
+          if (Number(amount) < Number(balance)) {
             const betTxn = await fairGameContract.bet(
               ethers.utils.parseEther(amount)
             );
             await betTxn.wait();
             const userBalance = await fairGameContract.users(address);
             const newBalance = formatEther(userBalance);
-            const isWin = newBalance > balance;
+            const isWin = Number(newBalance) > Number(balance);
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
               status: isWin ? "Win" : "Lose",
@@ -60,14 +60,14 @@ const Game = () => {
     (async () => {
       try {
         if (antiMartingaleBetting) {
-          if (Number(amount) < balance) {
+          if (Number(amount) < Number(balance)) {
             const betTxn = await fairGameContract.bet(
               ethers.utils.parseEther(amount)
             );
             await betTxn.wait();
             const userBalance = await fairGameContract.users(address);
             const newBalance = formatEther(userBalance);
-            const isWin = newBalance > balance;
+            const isWin = Number(newBalance) > Number(balance);
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
               status: isWin ? "Win" : "Lose",
@@ -111,14 +111,14 @@ const Game = () => {
         }
         if (status === "connected") {
           if (amount && isAmountValid) {
-            if (Number(amount) < balance) {
+            if (Number(amount) < Number(balance)) {
               const betTxn = await fairGameContract.bet(
                 ethers.utils.parseEther(amount)
               );
               await betTxn.wait();
               const userBalance = await fairGameContract.users(address);
               const newBalance = formatEther(userBalance);
-              const isWin = newBalance > balance;
+              const isWin = Number(newBalance) > Number(balance);
               const newHistory = history.slice(0, 29);
               newHistory.unshift({
                 status: isWin ? "Win" : "Lose",
