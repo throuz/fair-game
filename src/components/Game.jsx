@@ -288,6 +288,12 @@ const Game = () => {
     },
   };
 
+  const isBetting =
+    demoMartingaleBetting ||
+    demoAntiMartingaleBetting ||
+    martingaleBetting ||
+    antiMartingaleBetting;
+
   return (
     <div className="card">
       <h2>Game</h2>
@@ -296,6 +302,7 @@ const Game = () => {
           className={`strategy-btn ${
             strategy === "noStrategy" ? "active-strategy-btn" : ""
           }`}
+          disabled={isBetting}
           onClick={() => setStrategy("noStrategy")}
         >
           No Strategy
@@ -304,6 +311,7 @@ const Game = () => {
           className={`strategy-btn ${
             strategy === "martingale" ? "active-strategy-btn" : ""
           }`}
+          disabled={isBetting}
           onClick={() => setStrategy("martingale")}
         >
           Martingale
@@ -312,6 +320,7 @@ const Game = () => {
           className={`strategy-btn ${
             strategy === "antiMartingale" ? "active-strategy-btn" : ""
           }`}
+          disabled={isBetting}
           onClick={() => setStrategy("antiMartingale")}
         >
           Anti-Martingale
@@ -325,7 +334,9 @@ const Game = () => {
         onAmountInputChange={onAmountInputChange}
         isAmountValid={isAmountValid}
       />
-      <button onClick={onBetClickMap[strategy]}>Bet</button>
+      <button onClick={onBetClickMap[strategy]}>
+        {isBetting ? "Stop Bet" : "Bet"}
+      </button>
     </div>
   );
 };
