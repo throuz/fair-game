@@ -18,6 +18,12 @@ const Information = () => {
   const onSwitchAccountClick = async () => {
     if (status === "demo") {
       try {
+        setStore({
+          ...store,
+          status: "metaMaskRequired",
+          address: null,
+          balance: null,
+        });
         const { ethereum } = window;
         if (ethereum && ethereum.isMetaMask) {
           setStore({ ...store, status: "notConnected" });
