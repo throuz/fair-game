@@ -36,6 +36,19 @@ const Information = () => {
               address: accounts[0],
               balance: formatEther(userBalance),
             });
+          } else {
+            const requestAccounts = await ethereum.request({
+              method: "eth_requestAccounts",
+            });
+            const userBalance = await fairGameContract.users(
+              requestAccounts[0]
+            );
+            setStore({
+              ...store,
+              status: "connected",
+              address: requestAccounts[0],
+              balance: formatEther(userBalance),
+            });
           }
         }
       } catch (error) {
