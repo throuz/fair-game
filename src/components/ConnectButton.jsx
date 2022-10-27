@@ -2,9 +2,11 @@ import "./ConnectButton.css";
 import { StoreContext } from "../store";
 import { useContext } from "react";
 import formatEther from "../utils/formatEther";
+import useErrorHandle from "../hooks/useErrorHandle";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const ConnectButton = () => {
+  const errorHandle = useErrorHandle();
   const { store, setStore } = useContext(StoreContext);
   const { status, address } = store;
   const fairGameContract = useFairGameContract();
@@ -26,7 +28,7 @@ const ConnectButton = () => {
           balance: formatEther(userBalance),
         });
       } catch (error) {
-        console.error(error);
+        errorHandle(error);
       }
     },
     connected: () => {

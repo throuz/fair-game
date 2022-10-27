@@ -4,10 +4,12 @@ import { StoreContext } from "../store";
 import { useContext, useEffect, useState } from "react";
 import AmountInput from "./AmountInput";
 import formatEther from "../utils/formatEther";
+import useErrorHandle from "../hooks/useErrorHandle";
 import useFairGameContract from "../hooks/useFairGameContract";
 import useInterval from "../hooks/useInterval";
 
 const Game = () => {
+  const errorHandle = useErrorHandle();
   const { store, setStore } = useContext(StoreContext);
   const { status, address, balance, history } = store;
   const fairGameContract = useFairGameContract();
@@ -126,7 +128,7 @@ const Game = () => {
           }
         }
       } catch (error) {
-        console.log(error);
+        errorHandle(error);
         setMartingaleBetting(false);
       }
     })();
@@ -164,7 +166,7 @@ const Game = () => {
           }
         }
       } catch (error) {
-        console.log(error);
+        errorHandle(error);
         setAntiMartingaleBetting(false);
       }
     })();
@@ -256,10 +258,7 @@ const Game = () => {
           }
         }
       } catch (error) {
-        console.log(error.reason);
-        console.log(error.code);
-        console.log(error.action);
-        console.log(error.transaction);
+        errorHandle(error);
       }
     },
     martingale: () => {

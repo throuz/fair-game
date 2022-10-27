@@ -36,7 +36,19 @@ export default ({ children }) => {
           }
         }
       } catch (error) {
-        console.log(error);
+        if (error.reason) {
+          setStore({
+            ...store,
+            modalShow: true,
+            modalText: error.reason,
+          });
+        } else {
+          setStore({
+            ...store,
+            modalShow: true,
+            modalText: "Unknown error",
+          });
+        }
       }
     })();
   }, []);

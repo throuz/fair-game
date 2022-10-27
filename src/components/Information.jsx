@@ -6,9 +6,11 @@ import AmountInput from "./AmountInput";
 import Balance from "./Balance";
 import ConnectButton from "./ConnectButton";
 import formatEther from "../utils/formatEther";
+import useErrorHandle from "../hooks/useErrorHandle";
 import useFairGameContract from "../hooks/useFairGameContract";
 
 const Information = () => {
+  const errorHandle = useErrorHandle();
   const { store, setStore } = useContext(StoreContext);
   const { status, address, balance } = store;
   const fairGameContract = useFairGameContract();
@@ -57,7 +59,7 @@ const Information = () => {
           }
         }
       } catch (error) {
-        console.log(error);
+        errorHandle(error);
       }
     } else {
       setStore({
@@ -127,7 +129,7 @@ const Information = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      errorHandle(error);
     }
   };
 
@@ -178,7 +180,7 @@ const Information = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      errorHandle(error);
     }
   };
 
