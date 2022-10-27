@@ -371,7 +371,7 @@ const Game = () => {
         isAmountValid={isAmountValid}
       />
       <button onClick={onBetClickMap[strategy]}>
-        {isBetting ? "Stop Bet" : "Bet"}
+        {isBetting ? "Stop Auto Bet" : "Bet"}
       </button>
     </div>
   );
