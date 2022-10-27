@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { StoreContext } from "../store";
 import { useContext, useEffect, useState } from "react";
 import AmountInput from "./AmountInput";
+import capitalizeFirstLetter from "../utils/capitalizeFirstLetter";
 import formatEther from "../utils/formatEther";
 import useErrorHandle from "../hooks/useErrorHandle";
 import useFairGameContract from "../hooks/useFairGameContract";
@@ -362,7 +363,7 @@ const Game = () => {
         </button>
       </div>
       <h2 className={betResult === "--" ? "" : `${betResult}-text`}>
-        {betResult.charAt(0).toUpperCase() + betResult.slice(1)}
+        {capitalizeFirstLetter(betResult)}
       </h2>
       <AmountInput
         amount={amount}

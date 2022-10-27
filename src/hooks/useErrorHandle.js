@@ -1,5 +1,6 @@
 import { StoreContext } from "../store";
 import { useContext } from "react";
+import capitalizeFirstLetter from "../utils/capitalizeFirstLetter";
 
 const useErrorHandle = () => {
   const { store, setStore } = useContext(StoreContext);
@@ -9,7 +10,7 @@ const useErrorHandle = () => {
       setStore({
         ...store,
         modalShow: true,
-        modalText: error.reason,
+        modalText: capitalizeFirstLetter(error.reason),
       });
     } else {
       setStore({
