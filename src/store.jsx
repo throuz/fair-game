@@ -15,6 +15,7 @@ export default ({ children }) => {
     balance: null,
     history: history ?? [],
     modalShow: false,
+    modalText: null,
   });
 
   useEffect(() => {

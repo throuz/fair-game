@@ -88,8 +88,19 @@ const Information = () => {
           setIsAmountValid(false);
         }
       }
-      if (status === "metaMaskRequired" || status === "notConnected") {
-        setStore({ ...store, modalShow: true });
+      if (status === "metaMaskRequired") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please install MetaMask",
+        });
+      }
+      if (status === "notConnected") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please connect MetaMask",
+        });
       }
       if (status === "connected") {
         if (amount && isAmountValid) {
@@ -132,8 +143,19 @@ const Information = () => {
           setIsAmountValid(false);
         }
       }
-      if (status === "metaMaskRequired" || status === "notConnected") {
-        setStore({ ...store, modalShow: true });
+      if (status === "metaMaskRequired") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please install MetaMask",
+        });
+      }
+      if (status === "notConnected") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please connect MetaMask",
+        });
       }
       if (status === "connected") {
         if (amount && isAmountValid) {

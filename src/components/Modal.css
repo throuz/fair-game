@@ -19,11 +19,8 @@
   text-align: center;
 }
 
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.modal-content-text {
+  padding: 1em 0;
 }
 
 .close:hover,

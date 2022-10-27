@@ -24,7 +24,6 @@ const ConnectButton = () => {
           status: "connected",
           address: accounts[0],
           balance: formatEther(userBalance),
-          modalShow: false,
         });
       } catch (error) {
         console.error(error);

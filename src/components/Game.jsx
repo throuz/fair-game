@@ -211,8 +211,19 @@ const Game = () => {
             setIsAmountValid(false);
           }
         }
-        if (status === "metaMaskRequired" || status === "notConnected") {
-          setStore({ ...store, modalShow: true });
+        if (status === "metaMaskRequired") {
+          setStore({
+            ...store,
+            modalShow: true,
+            modalText: "Please install MetaMask",
+          });
+        }
+        if (status === "notConnected") {
+          setStore({
+            ...store,
+            modalShow: true,
+            modalText: "Please connect MetaMask",
+          });
         }
         if (status === "connected") {
           if (amount && isAmountValid) {
@@ -245,7 +256,10 @@ const Game = () => {
           }
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.reason);
+        console.log(error.code);
+        console.log(error.action);
+        console.log(error.transaction);
       }
     },
     martingale: () => {
@@ -256,8 +270,19 @@ const Game = () => {
           setDemoMartingaleBetting(true);
         }
       }
-      if (status === "metaMaskRequired" || status === "notConnected") {
-        setStore({ ...store, modalShow: true });
+      if (status === "metaMaskRequired") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please install MetaMask",
+        });
+      }
+      if (status === "notConnected") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please connect MetaMask",
+        });
       }
       if (status === "connected") {
         if (amount && isAmountValid) {
@@ -275,8 +300,19 @@ const Game = () => {
           setDemoAntiMartingaleBetting(true);
         }
       }
-      if (status === "metaMaskRequired" || status === "notConnected") {
-        setStore({ ...store, modalShow: true });
+      if (status === "metaMaskRequired") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please install MetaMask",
+        });
+      }
+      if (status === "notConnected") {
+        setStore({
+          ...store,
+          modalShow: true,
+          modalText: "Please connect MetaMask",
+        });
       }
       if (status === "connected") {
         if (amount && isAmountValid) {
