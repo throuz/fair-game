@@ -11,8 +11,8 @@ const App = () => {
       <div className="container">
         <Information />
         <Game />
-        <History />
         <HowToPlay />
+        <History />
       </div>
     </div>
   );
