@@ -57,13 +57,11 @@ export default ({ children }) => {
                     params: [
                       {
                         chainId: "0x5",
-                        chainName: "Goerli",
-                        rpcUrls: [
-                          "https://goerli.infura.io/v3/INSERT_API_KEY_HERE",
-                        ],
+                        chainName: "Goerli test network",
+                        rpcUrls: ["https://goerli.infura.io/v3/"],
                         nativeCurrency: {
                           name: "Goerli ETH",
-                          symbol: "gorETH",
+                          symbol: "GoerliETH",
                           decimals: 18,
                         },
                         blockExplorerUrls: ["https://goerli.etherscan.io"],
