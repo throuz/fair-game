@@ -15,7 +15,7 @@ const Game = () => {
   const { status, address, balance, history } = store;
   const fairGameContract = useFairGameContract();
   const [strategy, setStrategy] = useState("noStrategy");
-  const [betResult, setBetResult] = useState("--");
+  const [betStatus, setBetStatus] = useState("--");
   const [demoMartingaleBetting, setDemoMartingaleBetting] = useState(false);
   const [demoAntiMartingaleBetting, setDemoAntiMartingaleBetting] =
     useState(false);
@@ -28,6 +28,7 @@ const Game = () => {
   useInterval(
     () => {
       if (amount && isAmountValid && Number(amount) <= Number(balance)) {
+        setBetStatus("waiting");
         const isWin = Math.random() > 0.5;
         const newHistory = history.slice(0, 29);
         newHistory.unshift({
@@ -42,7 +43,7 @@ const Game = () => {
             balance: (Number(balance) + Number(amount)).toFixed(8),
             history: newHistory,
           });
-          setBetResult("win");
+          setBetStatus("win");
           setAmount(initialAmount);
         } else {
           setStore({
@@ -50,10 +51,11 @@ const Game = () => {
             balance: (Number(balance) - Number(amount)).toFixed(8),
             history: newHistory,
           });
-          setBetResult("lose");
+          setBetStatus("lose");
           setAmount(String(amount * 2));
         }
       } else {
+        setBetStatus("--");
         setIsAmountValid(false);
         setDemoMartingaleBetting(false);
       }
@@ -64,6 +66,7 @@ const Game = () => {
   useInterval(
     () => {
       if (amount && isAmountValid && Number(amount) <= Number(balance)) {
+        setBetStatus("waiting");
         const isWin = Math.random() > 0.5;
         const newHistory = history.slice(0, 29);
         newHistory.unshift({
@@ -78,7 +81,7 @@ const Game = () => {
             balance: (Number(balance) + Number(amount)).toFixed(8),
             history: newHistory,
           });
-          setBetResult("win");
+          setBetStatus("win");
           setAmount(String(amount * 2));
         } else {
           setStore({
@@ -86,10 +89,11 @@ const Game = () => {
             balance: (Number(balance) - Number(amount)).toFixed(8),
             history: newHistory,
           });
-          setBetResult("lose");
+          setBetStatus("lose");
           setAmount(initialAmount);
         }
       } else {
+        setBetStatus("--");
         setIsAmountValid(false);
         setDemoAntiMartingaleBetting(false);
       }
@@ -105,6 +109,7 @@ const Game = () => {
             const betTxn = await fairGameContract.bet(
               ethers.utils.parseEther(amount)
             );
+            setBetStatus("waiting");
             await betTxn.wait();
             const userBalance = await fairGameContract.users(address);
             const newBalance = formatEther(userBalance);
@@ -118,10 +123,10 @@ const Game = () => {
             localStorage.setItem("history", JSON.stringify(newHistory));
             setStore({ ...store, balance: newBalance, history: newHistory });
             if (isWin) {
-              setBetResult("win");
+              setBetStatus("win");
               setAmount(initialAmount);
             } else {
-              setBetResult("lose");
+              setBetStatus("lose");
               setAmount(String(amount * 2));
             }
           } else {
@@ -130,6 +135,7 @@ const Game = () => {
         }
       } catch (error) {
         errorHandle(error);
+        setBetStatus("--");
         setMartingaleBetting(false);
       }
     })();
@@ -143,6 +149,7 @@ const Game = () => {
             const betTxn = await fairGameContract.bet(
               ethers.utils.parseEther(amount)
             );
+            setBetStatus("waiting");
             await betTxn.wait();
             const userBalance = await fairGameContract.users(address);
             const newBalance = formatEther(userBalance);
@@ -156,10 +163,10 @@ const Game = () => {
             localStorage.setItem("history", JSON.stringify(newHistory));
             setStore({ ...store, balance: newBalance, history: newHistory });
             if (isWin) {
-              setBetResult("win");
+              setBetStatus("win");
               setAmount(String(amount * 2));
             } else {
-              setBetResult("lose");
+              setBetStatus("lose");
               setAmount(initialAmount);
             }
           } else {
@@ -168,6 +175,7 @@ const Game = () => {
         }
       } catch (error) {
         errorHandle(error);
+        setBetStatus("--");
         setAntiMartingaleBetting(false);
       }
     })();
@@ -187,6 +195,7 @@ const Game = () => {
       try {
         if (status === "demo") {
           if (amount && isAmountValid && Number(amount) <= Number(balance)) {
+            setBetStatus("waiting");
             const isWin = Math.random() > 0.5;
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
@@ -201,16 +210,17 @@ const Game = () => {
                 balance: (Number(balance) + Number(amount)).toFixed(8),
                 history: newHistory,
               });
-              setBetResult("win");
+              setBetStatus("win");
             } else {
               setStore({
                 ...store,
                 balance: (Number(balance) - Number(amount)).toFixed(8),
                 history: newHistory,
               });
-              setBetResult("lose");
+              setBetStatus("lose");
             }
           } else {
+            setBetStatus("--");
             setIsAmountValid(false);
           }
         }
@@ -234,6 +244,7 @@ const Game = () => {
               const betTxn = await fairGameContract.bet(
                 ethers.utils.parseEther(amount)
               );
+              setBetStatus("waiting");
               await betTxn.wait();
               const userBalance = await fairGameContract.users(address);
               const newBalance = formatEther(userBalance);
@@ -247,9 +258,9 @@ const Game = () => {
               localStorage.setItem("history", JSON.stringify(newHistory));
               setStore({ ...store, balance: newBalance, history: newHistory });
               if (isWin) {
-                setBetResult("win");
+                setBetStatus("win");
               } else {
-                setBetResult("lose");
+                setBetStatus("lose");
               }
             } else {
               setIsAmountValid(false);
@@ -260,6 +271,7 @@ const Game = () => {
         }
       } catch (error) {
         errorHandle(error);
+        setBetStatus("--");
       }
     },
     martingale: () => {
@@ -362,8 +374,8 @@ const Game = () => {
           Anti-Martingale
         </button>
       </div>
-      <h2 className={betResult === "--" ? "" : `${betResult}-text`}>
-        {capitalizeFirstLetter(betResult)}
+      <h2 className={betStatus === "--" ? "" : `${betStatus}-text`}>
+        {capitalizeFirstLetter(betStatus)}
       </h2>
       <AmountInput
         amount={amount}

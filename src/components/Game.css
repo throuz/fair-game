@@ -15,6 +15,10 @@
   color: #1a1a1a;
 }
 
+.waiting-text {
+  color: wheat;
+}
+
 .win-text {
   color: lightgreen;
 }
