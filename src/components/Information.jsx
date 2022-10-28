@@ -108,7 +108,7 @@ const Information = () => {
         if (amount && isAmountValid) {
           const metaMaskBalance = await ethereum.request({
             method: "eth_getBalance",
-            params: [address],
+            params: [address, "latest"],
           });
           if (Number(amount) <= formatEther(metaMaskBalance)) {
             const depositTxn = await fairGameContract.deposit({

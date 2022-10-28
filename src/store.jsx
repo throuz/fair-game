@@ -42,11 +42,11 @@ export default ({ children }) => {
         const { ethereum } = window;
         if (ethereum && ethereum.isMetaMask) {
           setStore({ ...store, status: "notConnected" });
-          if (ethereum.chainId !== "0x7a69") {
+          if (ethereum.chainId !== "0x5") {
             try {
               await ethereum.request({
                 method: "wallet_switchEthereumChain",
-                params: [{ chainId: "0x7a69" }],
+                params: [{ chainId: "0x5" }],
               });
               location.reload();
             } catch (error) {
@@ -56,14 +56,17 @@ export default ({ children }) => {
                     method: "wallet_addEthereumChain",
                     params: [
                       {
-                        chainId: "0x7a69",
-                        chainName: "Localhost network",
-                        rpcUrls: ["http://127.0.0.1:8545/"],
+                        chainId: "0x5",
+                        chainName: "Goerli",
+                        rpcUrls: [
+                          "https://goerli.infura.io/v3/INSERT_API_KEY_HERE",
+                        ],
                         nativeCurrency: {
-                          name: "Localhost BNB",
-                          symbol: "BNB",
+                          name: "Goerli ETH",
+                          symbol: "gorETH",
                           decimals: 18,
                         },
+                        blockExplorerUrls: ["https://goerli.etherscan.io"],
                       },
                     ],
                   });

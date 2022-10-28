@@ -7,7 +7,7 @@ const useFairGameContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const fairGameContract = new ethers.Contract(
-      "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "0x25629526244AE93c786FD4b471AC89c92c8D6Ef7",
       abi,
       signer
     );
