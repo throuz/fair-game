@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import chainParams from "./utils/chainParams";
 import formatEther from "./utils/formatEther";
 import useFairGameContract from "./hooks/useFairGameContract";
 
@@ -42,11 +43,11 @@ export default ({ children }) => {
         const { ethereum } = window;
         if (ethereum && ethereum.isMetaMask) {
           setStore({ ...store, status: "notConnected" });
-          if (ethereum.chainId !== "0x5") {
+          if (ethereum.chainId !== chainParams.chainId) {
             try {
               await ethereum.request({
                 method: "wallet_switchEthereumChain",
-                params: [{ chainId: "0x5" }],
+                params: [{ chainId: chainParams.chainId }],
               });
               location.reload();
             } catch (error) {
@@ -54,19 +55,7 @@ export default ({ children }) => {
                 try {
                   await ethereum.request({
                     method: "wallet_addEthereumChain",
-                    params: [
-                      {
-                        chainId: "0x5",
-                        chainName: "Goerli test network",
-                        rpcUrls: ["https://goerli.infura.io/v3/"],
-                        nativeCurrency: {
-                          name: "Goerli ETH",
-                          symbol: "GoerliETH",
-                          decimals: 18,
-                        },
-                        blockExplorerUrls: ["https://goerli.etherscan.io"],
-                      },
-                    ],
+                    params: [chainParams],
                   });
                   location.reload();
                 } catch (error) {
