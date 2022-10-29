@@ -10,7 +10,17 @@ const chainParamsMap = {
     },
     blockExplorerUrls: ["https://testnet.bscscan.com"],
   },
-  production: {},
+  production: {
+    chainId: "0x38",
+    chainName: "BSC Mainnet",
+    rpcUrls: ["https://bsc-dataseed1.binance.org"],
+    nativeCurrency: {
+      name: "Binance Coin",
+      symbol: "BNB",
+      decimals: 18,
+    },
+    blockExplorerUrls: ["https://bscscan.com"],
+  },
 };
 
 export default chainParamsMap[import.meta.env.MODE];
