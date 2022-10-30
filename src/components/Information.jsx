@@ -185,7 +185,7 @@ const Information = () => {
   };
 
   return (
-    <div className="card">
+    <section className="card">
       <h2>Information</h2>
       <ConnectButton />
       <button onClick={onSwitchAccountClick}>
@@ -201,7 +201,7 @@ const Information = () => {
         <button onClick={onDepositClick}>Deposit</button>
         <button onClick={onWithdrawClick}>Withdraw</button>
       </div>
-    </div>
+    </section>
   );
 };
 

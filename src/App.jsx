@@ -9,12 +9,12 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <div className="container">
+      <main>
         <Information />
         <Game />
         <HowToPlay />
         <History />
-      </div>
+      </main>
     </div>
   );
 };

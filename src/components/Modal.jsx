@@ -11,12 +11,15 @@ const Modal = () => {
   };
 
   return (
-    <div className="modal" style={{ display: modalShow ? "block" : "none" }}>
+    <section
+      className="modal"
+      style={{ display: modalShow ? "block" : "none" }}
+    >
       <div className="modal-content">
         <h3 className="modal-content-text">{modalText}</h3>
         <button onClick={onCloseClick}>Close</button>
       </div>
-    </div>
+    </section>
   );
 };
 

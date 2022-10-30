@@ -343,7 +343,7 @@ const Game = () => {
     antiMartingaleBetting;
 
   return (
-    <div className="card">
+    <section className="card">
       <h2>Game</h2>
       <div className="strategy-btn-group">
         <button
@@ -385,7 +385,7 @@ const Game = () => {
       <button onClick={onBetClickMap[strategy]}>
         {isBetting ? "Stop Auto Bet" : "Bet"}
       </button>
-    </div>
+    </section>
   );
 };
 

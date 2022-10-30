@@ -18,14 +18,14 @@
   text-align: left;
 }
 
-.container {
+main {
   display: grid;
   gap: 2em;
   grid-template-columns: 1fr 1fr;
 }
 
 @media screen and (max-width: 900px) {
-  .container {
+  main {
     grid-template-columns: auto;
   }
 }

@@ -6,7 +6,7 @@ const History = () => {
   const { history } = store;
 
   return (
-    <div className="card">
+    <section className="card">
       <h2>History</h2>
       <table>
         <thead>
@@ -26,7 +26,7 @@ const History = () => {
           ))}
         </tbody>
       </table>
-    </div>
+    </section>
   );
 };
 

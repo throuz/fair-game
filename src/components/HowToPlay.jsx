@@ -1,6 +1,6 @@
 const HowToPlay = () => {
   return (
-    <div className="card">
+    <section className="card">
       <h2>How to play</h2>
       <span className="text-left">
         Enter the desired bet amount and click the bet button, every bet has a
@@ -107,7 +107,7 @@ const HowToPlay = () => {
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
   );
 };
 
