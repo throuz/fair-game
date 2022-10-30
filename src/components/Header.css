@@ -1,0 +1,20 @@
+.header {
+  margin-bottom: 2em;
+}
+
+.header-title {
+  margin-bottom: 0.5em;
+}
+
+.header-subtitle {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.contract-address {
+  background: #333;
+  color: antiquewhite;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
