@@ -33,14 +33,14 @@ const Game = () => {
         const newHistory = history.slice(0, 29);
         newHistory.unshift({
           status: isWin ? "Win" : "Lose",
-          amount: Number(amount).toFixed(8),
+          amount: Number(amount).toFixed(4),
           time: new Date().toLocaleTimeString(),
         });
         localStorage.setItem("history", JSON.stringify(newHistory));
         if (isWin) {
           setStore({
             ...store,
-            balance: (Number(balance) + Number(amount)).toFixed(8),
+            balance: (Number(balance) + Number(amount)).toFixed(4),
             history: newHistory,
           });
           setBetStatus("win");
@@ -48,7 +48,7 @@ const Game = () => {
         } else {
           setStore({
             ...store,
-            balance: (Number(balance) - Number(amount)).toFixed(8),
+            balance: (Number(balance) - Number(amount)).toFixed(4),
             history: newHistory,
           });
           setBetStatus("lose");
@@ -71,14 +71,14 @@ const Game = () => {
         const newHistory = history.slice(0, 29);
         newHistory.unshift({
           status: isWin ? "Win" : "Lose",
-          amount: Number(amount).toFixed(8),
+          amount: Number(amount).toFixed(4),
           time: new Date().toLocaleTimeString(),
         });
         localStorage.setItem("history", JSON.stringify(newHistory));
         if (isWin) {
           setStore({
             ...store,
-            balance: (Number(balance) + Number(amount)).toFixed(8),
+            balance: (Number(balance) + Number(amount)).toFixed(4),
             history: newHistory,
           });
           setBetStatus("win");
@@ -86,7 +86,7 @@ const Game = () => {
         } else {
           setStore({
             ...store,
-            balance: (Number(balance) - Number(amount)).toFixed(8),
+            balance: (Number(balance) - Number(amount)).toFixed(4),
             history: newHistory,
           });
           setBetStatus("lose");
@@ -117,7 +117,7 @@ const Game = () => {
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
               status: isWin ? "Win" : "Lose",
-              amount: Number(amount).toFixed(8),
+              amount: Number(amount).toFixed(4),
               time: new Date().toLocaleTimeString(),
             });
             localStorage.setItem("history", JSON.stringify(newHistory));
@@ -157,7 +157,7 @@ const Game = () => {
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
               status: isWin ? "Win" : "Lose",
-              amount: Number(amount).toFixed(8),
+              amount: Number(amount).toFixed(4),
               time: new Date().toLocaleTimeString(),
             });
             localStorage.setItem("history", JSON.stringify(newHistory));
@@ -184,7 +184,7 @@ const Game = () => {
   const onAmountInputChange = (e) => {
     const newAmount = e.target.value;
     setIsAmountValid(
-      Number(newAmount) > 0 && /^[0-9]+(.[0-9]{0,8})?$/.test(newAmount)
+      Number(newAmount) > 0 && /^[0-9]+(.[0-9]{0,4})?$/.test(newAmount)
     );
     setInitialAmount(newAmount);
     setAmount(newAmount);
@@ -200,21 +200,21 @@ const Game = () => {
             const newHistory = history.slice(0, 29);
             newHistory.unshift({
               status: isWin ? "Win" : "Lose",
-              amount: Number(amount).toFixed(8),
+              amount: Number(amount).toFixed(4),
               time: new Date().toLocaleTimeString(),
             });
             localStorage.setItem("history", JSON.stringify(newHistory));
             if (isWin) {
               setStore({
                 ...store,
-                balance: (Number(balance) + Number(amount)).toFixed(8),
+                balance: (Number(balance) + Number(amount)).toFixed(4),
                 history: newHistory,
               });
               setBetStatus("win");
             } else {
               setStore({
                 ...store,
-                balance: (Number(balance) - Number(amount)).toFixed(8),
+                balance: (Number(balance) - Number(amount)).toFixed(4),
                 history: newHistory,
               });
               setBetStatus("lose");
@@ -252,7 +252,7 @@ const Game = () => {
               const newHistory = history.slice(0, 29);
               newHistory.unshift({
                 status: isWin ? "Win" : "Lose",
-                amount: Number(amount).toFixed(8),
+                amount: Number(amount).toFixed(4),
                 time: new Date().toLocaleTimeString(),
               });
               localStorage.setItem("history", JSON.stringify(newHistory));

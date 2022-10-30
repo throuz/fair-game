@@ -65,7 +65,7 @@ const Information = () => {
       setStore({
         ...store,
         status: "demo",
-        balance: (10000).toFixed(8),
+        balance: (10000).toFixed(4),
       });
     }
   };
@@ -73,7 +73,7 @@ const Information = () => {
   const onAmountInputChange = (e) => {
     const newAmount = e.target.value;
     setIsAmountValid(
-      Number(newAmount) > 0 && /^[0-9]+(.[0-9]{0,8})?$/.test(newAmount)
+      Number(newAmount) > 0 && /^[0-9]+(.[0-9]{0,4})?$/.test(newAmount)
     );
     setAmount(newAmount);
   };
@@ -84,7 +84,7 @@ const Information = () => {
         if (amount && isAmountValid && Number(amount) <= 10000000) {
           setStore({
             ...store,
-            balance: (Number(balance) + Number(amount)).toFixed(8),
+            balance: (Number(balance) + Number(amount)).toFixed(4),
           });
         } else {
           setIsAmountValid(false);
@@ -139,7 +139,7 @@ const Information = () => {
         if (amount && isAmountValid && Number(amount) <= Number(balance)) {
           setStore({
             ...store,
-            balance: (Number(balance) - Number(amount)).toFixed(8),
+            balance: (Number(balance) - Number(amount)).toFixed(4),
           });
         } else {
           setIsAmountValid(false);
