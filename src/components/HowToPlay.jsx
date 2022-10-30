@@ -13,9 +13,12 @@ const HowToPlay = () => {
       <span className="text-left">Manual betting, required for each bet.</span>
       <h3>Martingale</h3>
       <span className="text-left">
-        Automatic betting, which can be stopped at any time. If win, next bet
-        amount is initial bet amount, if lose, next bet amount is double
-        previous bet amount.
+        Automatic betting, which can be stopped at any time, reject transaction
+        to stop auto bet on real account.
+      </span>
+      <span className="text-left">
+        If win, next bet amount is initial bet amount, if lose, next bet amount
+        is double previous bet amount.
       </span>
       <span>E.g: Initial bet amount is 0.01 BNB</span>
       <table>
@@ -61,9 +64,12 @@ const HowToPlay = () => {
       </table>
       <h3>Anti-Martingale</h3>
       <span className="text-left">
-        Automatic betting, which can be stopped at any time. If win, next bet
-        amount is double previous bet amount, if lose, next bet amount is
-        initial bet amount.
+        Automatic betting, which can be stopped at any time, reject transaction
+        to stop auto bet on real account.
+      </span>
+      <span className="text-left">
+        If win, next bet amount is double previous bet amount, if lose, next bet
+        amount is initial bet amount.
       </span>
       <span>E.g: Initial bet amount is 0.01 BNB</span>
       <table>
