@@ -1,7 +1,7 @@
 const chainParamsMap = {
   development: {
     chainId: "0x61",
-    chainName: "BSC testnet",
+    chainName: "BSC Testnet",
     rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545/"],
     nativeCurrency: {
       name: "Test BNB",

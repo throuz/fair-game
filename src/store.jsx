@@ -49,7 +49,6 @@ export default ({ children }) => {
                 method: "wallet_switchEthereumChain",
                 params: [{ chainId: chainParams.chainId }],
               });
-              location.reload();
             } catch (error) {
               if (error.code === 4902) {
                 try {
@@ -57,7 +56,6 @@ export default ({ children }) => {
                     method: "wallet_addEthereumChain",
                     params: [chainParams],
                   });
-                  location.reload();
                 } catch (error) {
                   errorHandle(error);
                 }
