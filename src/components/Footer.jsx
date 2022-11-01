@@ -1,6 +1,13 @@
 import "./Footer.css";
+import contractAddress from "../utils/contractAddress";
 
 const Footer = () => {
+  const onContractAddressClick = () => {
+    window
+      .open(`https://bscscan.com/address/${contractAddress}`, "_blank")
+      .focus();
+  };
+
   const onTelegramClick = () => {
     window.open("https://t.me/+En-AsBSMqeRlZmU1", "_blank").focus();
   };
@@ -17,6 +24,9 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-btn-group">
+        <button className="external-link-btn" onClick={onContractAddressClick}>
+          CONTRACT
+        </button>
         <button className="external-link-btn" onClick={onTelegramClick}>
           TELEGRAM
         </button>
