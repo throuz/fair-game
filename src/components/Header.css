@@ -10,11 +10,3 @@ header {
   font-style: italic;
   margin-bottom: 0.5em;
 }
-
-.contract-address {
-  background: #333;
-  color: antiquewhite;
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}

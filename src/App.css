@@ -18,6 +18,12 @@
   text-align: left;
 }
 
+.external-link-btn {
+  background: #333;
+  color: antiquewhite;
+  cursor: pointer;
+}
+
 main {
   display: grid;
   gap: 2em;

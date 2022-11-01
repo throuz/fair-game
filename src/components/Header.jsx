@@ -14,7 +14,7 @@ const Header = () => {
       <h3 className="header-subtitle">
         50% chance of 100% reward on every bet
       </h3>
-      <button className="contract-address" onClick={onContractAddressClick}>
+      <button className="external-link-btn" onClick={onContractAddressClick}>
         {contractAddress}
       </button>
     </header>

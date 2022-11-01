@@ -17,10 +17,10 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-btn-group">
-        <button className="footer-btn" onClick={onTelegramClick}>
+        <button className="external-link-btn" onClick={onTelegramClick}>
           TELEGRAM
         </button>
-        <button className="footer-btn" onClick={onYoutubeClick}>
+        <button className="external-link-btn" onClick={onYoutubeClick}>
           YOUTUBE
         </button>
       </div>
