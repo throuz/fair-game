@@ -1,0 +1,15 @@
+footer {
+  margin: 2em 0;
+}
+
+.footer-btn-group {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.footer-btn {
+  background: #333;
+  width: 10em;
+}

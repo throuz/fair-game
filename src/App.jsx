@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./components/Footer";
 import Game from "./components/Game";
 import Header from "./components/Header";
 import History from "./components/History";
@@ -15,6 +16,7 @@ const App = () => {
         <HowToPlay />
         <History />
       </main>
+      <Footer />
     </div>
   );
 };
