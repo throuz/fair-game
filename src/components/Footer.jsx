@@ -21,6 +21,10 @@ const Footer = () => {
       .focus();
   };
 
+  const onTwitterClick = () => {
+    window.open("https://twitter.com/FairGam92208318", "_blank").focus();
+  };
+
   return (
     <footer>
       <div className="footer-btn-group">
@@ -32,6 +36,9 @@ const Footer = () => {
         </button>
         <button className="external-link-btn" onClick={onYoutubeClick}>
           YOUTUBE
+        </button>
+        <button className="external-link-btn" onClick={onTwitterClick}>
+          TWITTER
         </button>
       </div>
       <h4>Copyright © 2022 Throuz</h4>
